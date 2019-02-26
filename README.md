@@ -6,7 +6,7 @@ https://github.com/hyperopt/hyperopt
 In order to run it:
 
 1. Setup a Mongodb server
-2. Specify os.env variables TF_CONFIG with PS_HOSTS and 
+2. Specify os.env variables TF_CONFIG with PS_HOSTS and run .run.sh
 
 # install mongo and open up port
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
