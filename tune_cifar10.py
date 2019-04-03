@@ -11,6 +11,7 @@ def main():
     mongo_db_host = os.environ["MONGO_DB_HOST"]
     mongo_db_port = os.environ["MONGO_DB_PORT"]
     experiment_name = os.environ["EXPERIMENT_NAME"]
+    data_dir = os.path.abspath(os.environ.get('PS_MODEL_PATH', os.getcwd()))
 
     mongo_connect_str = "mongo://{0}:{1}/foo_db/jobs".format(mongo_db_host, mongo_db_port)
 
@@ -27,10 +28,10 @@ def main():
             best = fmin(train_cifar10, space=space, trials=trials, algo=tpe.suggest, max_evals=25)
 
             if os.environ["JOB_NAME"] == "ps":
-                save_path = os.path.join("./logs", "results.json")
+                save_path = os.path.join(data_dir, "results.json")
                 with open(save_path, "w") as f:
                     json.dump(json.dumps(best), f)
-
+                    print(str(best))
             return
 
 
