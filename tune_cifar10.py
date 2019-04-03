@@ -4,7 +4,7 @@ from hyperopt import fmin, tpe, hp
 from hyperopt.mongoexp import MongoTrials
 from pymongo.errors import ServerSelectionTimeoutError
 
-from cifar10_tutorial import train_cifar10
+from .cifar10_tutorial import train_cifar10
 
 
 def main():

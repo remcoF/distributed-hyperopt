@@ -1,10 +1,17 @@
 import math
 import os
 import json
+import math
+from time import sleep
 from hyperopt import fmin, tpe, hp
 from hyperopt.mongoexp import MongoTrials
 from pymongo.errors import ServerSelectionTimeoutError
-from objective import obj
+
+
+def obj(params):
+    x = params['x']
+    sleep(3)
+    return math.sin(x)
 
 
 def main():
