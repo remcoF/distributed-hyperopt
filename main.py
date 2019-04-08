@@ -33,7 +33,7 @@ def main():
             }
             best = fmin(obj, space=space, trials=trials, algo=tpe.suggest, max_evals=100)
 
-            if os.environ["JOB_NAME"] == "ps":
+            if os.environ["TYPE"] == "ps":
                 save_path = os.path.join(data_dir, "results.json")
                 with open(save_path, "w") as f:
                     json.dump(json.dumps(best), f)
