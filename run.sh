@@ -12,8 +12,7 @@ echo $MONGO_DB_HOST $MONGO_DB_PORT
 while :; do
     if nc -z -v $MONGO_DB_HOST $MONGO_DB_PORT 2>/dev/null; then
         echo "mongodb is up!"
-        hyperopt-mongo-worker --mongo=$MONGO_DB_HOST:$MONGO_DB_PORT/foo_db --poll-interval=1.0 --exp-key=distributed-hyperopt
- &
+        hyperopt-mongo-worker --mongo=$MONGO_DB_HOST:$MONGO_DB_PORT/foo_db --poll-interval=1.0 --exp-key=distributed-hyperopt &
         python ./tune_cifar10.py
         exit
     else
