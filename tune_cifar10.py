@@ -11,7 +11,7 @@ from cifar10_tutorial import train_cifar10
 def main():
     mongo_db_host = os.environ["MONGO_DB_HOST"]
     mongo_db_port = os.environ["MONGO_DB_PORT"]
-    experiment_name = experiment_name = os.environ.get("EXPERIMENT_NAME", 'cifar10-hyperopt')
+    experiment_name = os.environ.get("EXPERIMENT_NAME", 'cifar10-hyperopt')
     data_dir = os.path.abspath(os.environ.get('PS_MODEL_PATH', os.getcwd()))
 
     mongo_connect_str = "mongo://{0}:{1}/foo_db/jobs".format(mongo_db_host, mongo_db_port)

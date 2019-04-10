@@ -65,8 +65,6 @@ import torch.optim as optim
 
 
 def train_cifar10(params):
-
-
     ############    ############################################################
     # The output of torchvision datasets are PILImage images of range [0, 1].
     # We transform them to Tensors of normalized range [-1, 1].
@@ -88,16 +86,11 @@ def train_cifar10(params):
     classes = ('plane', 'car', 'bird', 'cat',
                'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
-
-
     ########################################################################
     # 2. Define a Convolutional Neural Network
     # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     # Copy the neural network from the Neural Networks section before and modify it to
     # take 3-channel images (instead of 1-channel images as it was defined).
-
-
-
 
     class Net(nn.Module):
         def __init__(self):
@@ -118,15 +111,12 @@ def train_cifar10(params):
             x = self.fc3(x)
             return x
 
-
     net = Net()
 
     ########################################################################
     # 3. Define a Loss function and optimizer
     # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     # Let's use a Classification Cross-Entropy loss and SGD with momentum.
-
-
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(net.parameters(), lr=params['lr'], momentum=params['momentum'])
@@ -157,7 +147,7 @@ def train_cifar10(params):
 
             # print statistics
             running_loss += loss.item()
-            if i % 2000 == 1999:    # print every 2000 mini-batches
+            if i % 2000 == 1999:  # print every 2000 mini-batches
                 print('[%d, %5d] loss: %.3f' %
                       (epoch + 1, i + 1, running_loss / 2000))
                 running_loss = 0.0
@@ -183,7 +173,7 @@ def train_cifar10(params):
     print('Accuracy of the network on the 10000 test images: {0}'.format(100. * test_acc))
     return test_acc
 
+
 if __name__ == '__main__':
     params = {'lr': 0.001, 'momentum': 0.9}
     train_cifar10(params)
-
