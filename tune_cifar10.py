@@ -1,3 +1,4 @@
+import logging
 import os
 import json
 from hyperopt import fmin, tpe, hp
@@ -27,13 +28,19 @@ def main():
             }
             best = fmin(train_cifar10, space=space, trials=trials, algo=tpe.suggest, max_evals=25)
 
-            if os.environ["TYPE"] == "ps":
+            if os.environ["TYPE"] == "worker":
                 save_path = os.path.join(data_dir, "results.json")
                 with open(save_path, "w") as f:
+                    logging.debug('Saving results.json to {}'.format(data_dir))
+                    logging.info('Results: {}'.format((str(best))))
                     json.dump(json.dumps(best), f)
-                    print(str(best))
             return
 
 
 if __name__ == "__main__":
+    logging.info('Starting Worker')
+    # Print ENV Variables
+    logging.debug('=' * 20 + ' Environment Variables ' + '=' * 20)
+    for k, v in os.environ.items():
+        logging.debug('{}: {}'.format(k, v))
     main()

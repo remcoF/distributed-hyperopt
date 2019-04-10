@@ -46,4 +46,9 @@ def main():
 
 
 if __name__ == "__main__":
+    logging.info('Starting Hyperopt Server')
+    # Print ENV Variables
+    logging.debug('=' * 20 + ' Environment Variables ' + '=' * 20)
+    for k, v in os.environ.items():
+        logging.debug('{}: {}'.format(k, v))
     main()
