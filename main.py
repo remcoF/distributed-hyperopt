@@ -18,17 +18,17 @@ def obj(params):
 def main():
     mongo_db_host = os.environ["MONGO_DB_HOST"]
     mongo_db_port = os.environ["MONGO_DB_PORT"]
-    experiment_name = os.environ.get("EXPERIMENT_NAME", 'cifar10-hyperopt')
+    experiment_name = 'distributed-hyperopt'
     data_dir = os.path.abspath(os.environ.get('PS_MODEL_PATH', os.getcwd()))
 
     mongo_connect_str = "mongo://{0}:{1}/foo_db/jobs".format(mongo_db_host, mongo_db_port)
 
     while True:
         try:
-            logging.debug('Launching MongoTrials for {}'.format(experiment_name))
+            logging.info('Launching MongoTrials for {}'.format(experiment_name))
             trials = MongoTrials(mongo_connect_str, exp_key=experiment_name)
         except ServerSelectionTimeoutError:
-            logging.debug('No MongoDB server is available for an operation')
+            logging.warning('No MongoDB server is available for an operation')
             pass
         else:
             space = {
